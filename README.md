@@ -1,12 +1,36 @@
 # jupyter-docker-stacks-aio
 
+Docker Hub: https://hub.docker.com/r/dennischancs/jupyter-docker-stacks-aio
+
+QuickStart:
+
+```bash
+# create a container and run
+docker run \
+  -d \
+  # -u root \
+  -e RESTARTABLE=yes \
+  -e JUPYTER_ENABLE_LAB=yes \
+  -p 10000:8888 \
+  -it -v /some/host/folder/for/work::/home/jovyan/work \
+  --restart always \
+  --name notebook \
+  dennischancs/jupyter-docker-stacks-aio:latest start-notebook.sh
+
+# then, set your token for notebook on web browser
+```
+
+Common Features: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html
+
+## Notes
+
 [jupyter/docker-stacks](https://github.com/jupyter/docker-stacks) **<u>all in one</u>**, add tinyTeX and CJK fonts support, called `jupyter-docker-stacks-aio`.
 
 ![fig](images/datascience-notebook.png)
 
 1. based  [datascience-notebook](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook)
 
-2. remove TexLive and add TinyTex. [ps.: docker size come bigger but build easier]
+2. remove TexLive and install TinyTex. [ps.: docker size come bigger but build easier]
 
    - install CJK fonts(wqy-microhei.ttc), microsoft-core-ttf, code fonts, etc.
 
@@ -16,6 +40,36 @@
 
    - tensorflow-notebook
    - pyspark-notebook and all-spark-notebook
+
+### [TinyTex](https://yihui.org/tinytex/) Usage
+
+```bash
+# env setting
+TEXDIR=/opt/TinyTex
+cd $TEXDIR/bin/*/
+[ $OSNAME != "Darwin" ] && ./tlmgr option sys_bin /usr/local/bin
+./tlmgr postaction install script xetex  # GH issue #313
+([ -z $CI ] || [ $(echo $CI | tr "[:upper:]" "[:lower:]") != "true" ]) && ./tlmgr option repository ctan
+./tlmgr path add
+
+# uninstall
+tlmgr path remove
+rm -r "/opt/TinyTeX"
+
+# install package
+tlmgr search --global --file "/times.sty"
+> psnfss:
+>         texmf-dist/tex/latex/psnfss/times.sty
+> ...
+
+tlmgr install psnfss
+
+# update everything
+tlmgr update --self --all
+tlmgr path add
+fmtutil-sys --all
+
+```
 
 ## Reference
 

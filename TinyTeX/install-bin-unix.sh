@@ -22,7 +22,7 @@ TINYTEX_INSTALLER=${TINYTEX_INSTALLER:-"TinyTeX"}
 if [ $OSNAME = 'Darwin' ]; then
   TEXDIR=${TINYTEX_DIR:-~/Library}/TinyTeX
 else
-  TEXDIR=${TINYTEX_DIR:-~}/.TinyTeX
+  TEXDIR=${TINYTEX_DIR:-/opt}/TinyTeX  # cannot work cause the linux TinyTeX.tar.gz default folder `.TinyTeX`
   if [ $OSNAME != 'Linux' -o $(uname -m) != 'x86_64' -o "$OSTYPE" != 'linux-gnu' ]; then
     TINYTEX_INSTALLER="installer-unix"
   fi
@@ -42,7 +42,8 @@ if [ $OSNAME = 'Darwin' ]; then
     rm TinyTeX.tgz
 else if [ $TINYTEX_INSTALLER != 'installer-unix' ]; then
     wget --progress=dot:giga -O TinyTeX.tar.gz ${TINYTEX_URL}.tar.gz
-    tar xzf TinyTeX.tar.gz -C $(dirname $TEXDIR)
+    tar xzf TinyTeX.tar.gz -C $(dirname $TEXDIR)  # /opt/.TinyTeX
+    mv $(dirname $TEXDIR)/.TinyTeX $(dirname $TEXDIR)/TinyTeX  # /opt/TinyTeX
     rm TinyTeX.tar.gz
   else
     echo "We do not have a prebuilt TinyTeX package for this operating system ${OSTYPE}."
@@ -57,7 +58,7 @@ else if [ $TINYTEX_INSTALLER != 'installer-unix' ]; then
 fi
 
 cd $TEXDIR/bin/*/
-[ $OSNAME != "Darwin" ] && ./tlmgr option sys_bin ~/bin
+[ $OSNAME != "Darwin" ] && ./tlmgr option sys_bin /usr/local/bin
 ./tlmgr postaction install script xetex  # GH issue #313
 ([ -z $CI ] || [ $(echo $CI | tr "[:upper:]" "[:lower:]") != "true" ]) && ./tlmgr option repository ctan
 ./tlmgr path add
