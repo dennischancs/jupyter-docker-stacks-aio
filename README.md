@@ -28,7 +28,7 @@ python -c "import IPython;print(IPython.lib.passwd())"
 > Verify password:  123456
 >    sha1:b0b35a1dbd8b:e7c39478aad15b9df30fbdc5ab81bb23d27c6f2b
 
-# create a container and run
+# put hasded passwd at `--NotebookApp.password=''` and create a container to run
 docker run -d \
   -u root -e GRANT_SUDO=yes \ # allow jovyan use sudo without passwd
   -e RESTARTABLE=yes \
@@ -47,7 +47,7 @@ Common Features: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/co
 
 [jupyter/docker-stacks](https://github.com/jupyter/docker-stacks) **<u>all in one</u>**, add tinyTeX and CJK fonts support, called `jupyter-docker-stacks-aio`.
 
-![fig](images/datascience-notebook.png)
+![fig](https://github.com/dennischancs/jupyter-docker-stacks-aio/blob/main/images/datascience-notebook.png)
 
 1. based  [datascience-notebook](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook)
 

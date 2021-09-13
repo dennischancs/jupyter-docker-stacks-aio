@@ -41,7 +41,7 @@ RUN cd /tmp &&\
 
 # fix latex template to support CJK fonts (`python*` for unknown python version)
 RUN cd $CONDA_DIR/lib/python*/site-packages/nbconvert/templates && mkdir latex && \
-    wget -O "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/latex-templates.tar.gz" && \
+    wget "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/latex-templates.tar.gz" -O latex-templates.tar.gz && \
     tar xzf latex-templates.tar.gz -C . && \
     chmod -R 755 ./latex && \
     rm -rf ./latex-templates.tar.gz && \
