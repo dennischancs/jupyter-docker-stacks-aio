@@ -29,29 +29,27 @@ RUN \
     mkfontdir ./*
 
 # add TinyTeX (nbconvert dependencies: TinyTeX replace to texlive)
-# `tlmgr list --only-installed` > 1.txt to export installed packages
+# `tlmgr list --only-installed > installed.txt` to export installed packages
 RUN cd /tmp &&\
     wget -qO- "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/install-bin-unix.sh" | sh && \
     # add package
     tlmgr install ctex esint titling && \
     rm -rf /tmp/* && \
-    rm -rf /home/jovyan/.wget-hsts
-# `tlmgr path add` in install-bin-unix.sh maybe not work well
+    rm -rf ~/.wget-hsts
+# if `tlmgr path add` in install-bin-unix.sh don't work well, to try set ENV.
 # ENV PATH=/opt/TinyTeX/bin/x86_64-linux/:$PATH
 
-# fix latex template to support CJK fonts (`python*` for unknown python version)
-RUN cd $CONDA_DIR/lib/python*/site-packages/nbconvert/templates && mkdir latex && \
+
+# fix latex template to support CJK fonts
+RUN cd /opt/conda/share/jupyter/nbconvert/templates/latex && \
     wget "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/latex-templates.tar.gz" -O latex-templates.tar.gz && \
     tar xzf latex-templates.tar.gz -C . && \
-    chmod -R 755 ./latex && \
-    rm -rf ./latex-templates.tar.gz && \
-    rm -rf /home/jovyan/.wget-hsts && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
+    rm -rf latex-templates.tar.gz && \
+    rm -rf ~/.wget-hsts && \
+    fix-permissions "${CONDA_DIR}"
+    #fix-permissions "/home/${NB_USER}"
 
 USER ${NB_UID}
-
-
 #### ----- merge tensorflow-notebook ----- ####
 # Install Tensorflow
 RUN mamba install --quiet --yes \

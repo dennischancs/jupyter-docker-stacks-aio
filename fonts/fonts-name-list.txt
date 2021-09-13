@@ -1,0 +1,83 @@
+# fonts-code
+consolaz.ttf                           Consolas
+consola.ttf                            Consolas
+consolab.ttf                           Consolas
+consolai.ttf                           Consolas
+MesloLGM-Regular-NF.ttf                MesloLGM Nerd Font
+MesloLGM-I-NF.ttf                      MesloLGM Nerd Font
+MesloLGM-B-NF.ttf                      MesloLGM Nerd Font
+MesloLGM-BI-NF.ttf                     MesloLGM Nerd Font
+MesloLGM-Regular-NF_Mono.ttf           MesloLGM Nerd Font Mono
+MesloLGM-I-NF_Mono.ttf                 MesloLGM Nerd Font Mono
+MesloLGM-B-NF_Mono.ttf                 MesloLGM Nerd Font Mono
+MesloLGM-BI-NF_Mono.ttf                MesloLGM Nerd Font Mono
+Microsoft YaHei Mono.ttf               Microsoft YaHei Mono
+OfficeCodePro-Bold.otf                 Office Code Pro Bold
+OfficeCodePro-BoldItalic.otf           Office Code Pro Bold Italic
+OfficeCodePro-Light.otf                Office Code Pro Light
+OfficeCodePro-LightItalic.otf          Office Code Pro Light Italic
+OfficeCodePro-Medium.otf               Office Code Pro Medium
+OfficeCodePro-MediumItalic.otf         Office Code Pro Medium Italic
+OfficeCodePro-Regular.otf              Office Code Pro
+OfficeCodePro-RegularItalic.otf        Office Code Pro Italic
+PT Mono Bold.ttf                       PT Mono  # bold
+PT Mono Regular.ttf                    PT Mono  # regular
+
+# fonts-en
+Arial.TTF                              Arial
+Arialbd.TTF                            Arial
+Arialbi.TTF                            Arial
+Ariali.TTF                             Arial
+ARIALN.TTF                             Arial Narrow
+ARIALNB.TTF                            Arial Narrow
+ARIALNBI.TTF                           Arial Narrow
+ARIALNI.TTF                            Arial Narrow
+AriBlk.TTF                             Arial Black
+calibri.ttf                            Calibri
+calibrib.ttf                           Calibri
+calibrii.ttf                           Calibri
+calibriz.ttf                           Calibri
+calibril.ttf                           Calibri Light
+calibrili.ttf                          Calibri Light
+Helvetica.ttf                          Helvetica
+HelveticaB.ttf                         Helvetica
+HelveticaBO.ttf                        Helvetica
+HelveticaO.ttf                         Helvetica
+MTEXTRA.TTF                            MT Extra
+symbol.ttf                             Symbol
+times.ttf                              Times New Roman
+timesbd.ttf                            Times New Roman
+timesbi.ttf                            Times New Roman
+timesi.ttf                             Times New Roman
+Verdana.TTF                            Verdana
+Verdanab.TTF                           Verdana
+Verdanai.TTF                           Verdana
+Verdanaz.TTF                           Verdana
+webdings.ttf                           Webdings
+wingding.ttf                           Wingdings
+WINGDNG2.TTF                           Wingdings 2
+WINGDNG3.TTF                           Wingdings 3
+
+# fonts-zh
+simfang.ttf                            FangSong
+simhei.ttf                             SimHei
+simsun.ttc                             SimSun
+	simsun_0.ttf                         SimSun
+	simsun_1.ttf                         NSimSun # New SimSun
+simsunb.ttf                            SimSun-ExtB
+STFANGSO.TTF                           STFangsong
+STSONG.TTF                             STSong
+STXIHEI.TTF                            STXihei
+STZHONGS.TTF                           STZhongsong
+wqy-microhei.ttc                       WenQuanYi Micro Hei
+	wqy-microhei_0.ttf                   WenQuanYi Micro Hei        # sans
+	wqy-microhei_1.ttf                   WenQuanYi Micro Hei Mono   # mono
+msyh.ttc                               Microsoft YaHei       # normal
+	msyh_0.ttf                           Microsoft YaHei
+	msyh_1.ttf                           Microsoft YaHei UI
+msyhbd.ttc                             Microsoft YaHei       # bold
+	msyhbd_0.ttf                         Microsoft YaHei
+	msyhbd_1.ttf                         Microsoft YaHei UI
+msyhl.ttc                              Microsoft YaHei Light
+	msyhl_0.ttf                          Microsoft YaHei Light
+	msyhl_1.ttf                          Microsoft YaHei UI Light

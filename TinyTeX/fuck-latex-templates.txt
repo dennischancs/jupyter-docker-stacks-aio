@@ -1,0 +1,25 @@
+root@a354d21ff118:/ # find / -name 'latex'
+/home/jovyan/.local/share/jupyter/nbconvert/templates/latex        # no work
+/root/.local/share/jupyter/nbconvert/templates/latex               # no right
+/opt/conda/lib/python3.9/site-packages/nbconvert/templates/latex   # no work
+/usr/share/jupyter/nbconvert/templates/latex                       # no work
+/usr/local/share/jupyter/nbconvert/templates/latex                 # no work
+/opt/conda/share/jupyter/nbconvert/templates/latex                 # its here! fuck! new `*.tex.j2` files == old `*.tplx` files
+
+
+| base.tex.j2(new) <== base.tplx(old)
+| index.tex.j2(new) <== article.tplx(old)
+| report.tex.j2(new) <== report.tplx(old)
+
+
+
+---- nbconvert to pdf use latex with CJK support
+
+\usepackage{fontspec, xunicode, xltxtra}
+\usepackage{ctex}                             % 中文宏包，支持中文自动换行
+\setmainfont{Times New Roman}                 % 全局英文serif字体(衬线，如：times)
+\setsansfont{Helvetica}                       % 全局英文sans字体(无衬线，如：helvetica, droidsans)
+\setmonofont{MesloLGM Nerd Font Mono}         % 全局英文mono字体(等宽，如：Consolas, 各种code font)
+\setCJKmainfont{STSong}                       % 全局CJK serif字体(衬线，如：宋体, 华文宋体)
+\setCJKsansfont{STXihei}                      % 全局CJK sans字体(无衬线，如：黑体, 华文细黑, 文泉驿微米黑, droidsans-fallback)
+\setCJKmonofont{WenQuanYi Micro Hei Mono}     % 全局CJK mono字体(等宽，如：微软雅黑等宽, 文泉驿等宽微米黑)
