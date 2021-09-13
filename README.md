@@ -30,7 +30,7 @@ Common Features: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/co
 
 1. based  [datascience-notebook](https://github.com/jupyter/docker-stacks/tree/master/datascience-notebook)
 
-2. remove TexLive and install TinyTex. [ps.: docker size come bigger but build easier]
+2. remove TexLive and install TinyTex. [ps.: not build from `minimal-notebook`, docker image size comes bigger but builds easier]
 
    - install CJK fonts(wqy-microhei.ttc), microsoft-core-ttf, code fonts, etc.
 
