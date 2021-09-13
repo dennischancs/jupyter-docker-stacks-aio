@@ -9,13 +9,13 @@ LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 #### ----- remove TexLive and add TinyTex ----- ####
 # remove texlive
 USER root
-RUN apt remove -y texlive-xetex texlive-fonts-recommended texlive-plain-generic && \
-    apt-get update -y && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get purge --yes texlive-xetex texlive-fonts-recommended texlive-plain-generic && \
+    apt-get update --yes && \
+    apt-get install --yes --no-install-recommends \
     jed \
     python-dev \
     xfonts-utils \
-    fontconfig \
+    fontconfig && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install CJK font
