@@ -34,7 +34,7 @@ USER ${NB_UID}
 # ask `tlmgr path add` to add binaries to default /usr/local/b with the argument '--admin'
 # ENV PATH=/opt/TinyTeX/bin/x86_64-linux:$PATH
 RUN cd /tmp &&\
-    wget -qO- "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/minimal-notebook/TinyTeX/install-bin-unix.sh" | sh && \
+    wget -qO- "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/install-bin-unix.sh" | sh && \
     chown -R $NB_UID:$NB_GID /opt/TinyTeX && \
     rm -rf /tmp/* && \
     rm -rf /home/jovyan/.wget-hsts

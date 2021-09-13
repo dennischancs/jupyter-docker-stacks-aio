@@ -63,7 +63,7 @@ cd $TEXDIR/bin/*/
 ./tlmgr path add
 
 # add package
-tlmgr install $(download https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/minimal-notebook/TinyTeX/pkgs-custom.txt | tr '\n' ' ')
+tlmgr install $(download https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/pkgs-custom.txt | tr '\n' ' ')
 tlmgr install latex-bin luatex xetex
 
 ./tlmgr path add
