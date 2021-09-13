@@ -9,8 +9,8 @@ LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 #### ----- remove TexLive and add TinyTex ----- ####
 # remove texlive
 USER root
-RUN apt remove texlive-xetex texlive-fonts-recommended texlive-plain-generic && \
-    apt-get update && \
+RUN apt remove -y texlive-xetex texlive-fonts-recommended texlive-plain-generic && \
+    apt-get update -y && \
     apt-get install -y --no-install-recommends \
     jed \
     python-dev \
