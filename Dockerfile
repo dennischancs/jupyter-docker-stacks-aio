@@ -25,8 +25,8 @@ RUN \
     chmod -R 755 /usr/share/fonts && \
     cd /usr/share/fonts && \
     fc-cache -fv && \
-    mkfontscale  && \
-    mkfontdir
+    mkfontscale ./*  && \
+    mkfontdir ./*
 
 # add TinyTeX (nbconvert dependencies: TinyTeX replace to texlive)
 # `tlmgr list --only-installed` > 1.txt to export installed packages
@@ -40,11 +40,18 @@ RUN cd /tmp &&\
 # ENV PATH=/opt/TinyTeX/bin/x86_64-linux/:$PATH
 
 # fix latex template to support CJK fonts (`python*` for unknown python version)
-COPY latex $CONDA_DIR/lib/python*/site-packages/nbconvert/templates/latex
-RUN chown -R $NB_UID:$NB_GID $CONDA_DIR/lib/python*/site-packages/nbconvert/templates/latex
-
+RUN cd $CONDA_DIR/lib/python*/site-packages/nbconvert/templates && mkdir latex && \
+    wget -O "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/latex-templates.tar.gz" && \
+    tar xzf latex-templates.tar.gz -C . && \
+    chmod -R 755 ./latex && \
+    rm -rf ./latex-templates.tar.gz && \
+    rm -rf /home/jovyan/.wget-hsts && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
 
 USER ${NB_UID}
+
+
 #### ----- merge tensorflow-notebook ----- ####
 # Install Tensorflow
 RUN mamba install --quiet --yes \

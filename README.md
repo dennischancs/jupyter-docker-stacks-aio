@@ -1,24 +1,45 @@
 # jupyter-docker-stacks-aio
 
-Docker Hub: https://hub.docker.com/r/dennischancs/jupyter-docker-stacks-aio
+**Docker Hub: https://hub.docker.com/r/dennischancs/jupyter-docker-stacks-aio**
 
-QuickStart:
+**QuickStart:**
+
+**method 1**: `docker run` without `-d`, then use the `URL` in terminal to access.
 
 ```bash
-# create a container and run
 docker run \
-  -d \
-  # -u root \
+  -u root -e GRANT_SUDO=yes \ # allow jovyan use sudo without passwd
   -e RESTARTABLE=yes \
   -e JUPYTER_ENABLE_LAB=yes \
   -p 10000:8888 \
-  -it -v /some/host/folder/for/work::/home/jovyan/work \
+  -it -v  /some/host/folder/for/work:/home/jovyan/work \
   --restart always \
   --name notebook \
   dennischancs/jupyter-docker-stacks-aio:latest start-notebook.sh
-
-# then, set your token for notebook on web browser
 ```
+
+**method2**: `docker run` with `-d`, must generate a custom password hashed before.
+
+```bash
+# generate a custom password hashed using `IPython.lib.passwd()` instead of the default token
+pip install IPython
+python -c "import IPython;print(IPython.lib.passwd())"
+> Enter password:  123456
+> Verify password:  123456
+>    sha1:b0b35a1dbd8b:e7c39478aad15b9df30fbdc5ab81bb23d27c6f2b
+
+# create a container and run
+docker run -d \
+  -u root -e GRANT_SUDO=yes \ # allow jovyan use sudo without passwd
+  -e RESTARTABLE=yes \
+  -e JUPYTER_ENABLE_LAB=yes \
+  -p 10000:8888 \
+  -it -v /some/host/folder/for/work:/home/jovyan/work \
+  --restart always \
+  --name notebook \
+  dennischancs/jupyter-docker-stacks-aio:latest start-notebook.sh --NotebookApp.password='sha1:b0b35a1dbd8b:e7c39478aad15b9df30fbdc5ab81bb23d27c6f2b'
+```
+
 
 Common Features: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html
 
