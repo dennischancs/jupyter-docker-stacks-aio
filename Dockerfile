@@ -28,12 +28,13 @@ RUN \
     mkfontscale  && \
     mkfontdir
 
+USER ${NB_UID}
 # add TinyTex (nbconvert dependencies: tinytex replace to texlive)
-# ask `tlmgr path add` to add binaries to default /usr/local/b with the argument '--admin'
-# ENV PATH=/opt/TinyTeX/bin/x86_64-linux:$PATH
 RUN cd /tmp &&\
-    wget -qO- "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/install-bin-unix.sh" | sh && \
-    chown -R $NB_UID:$NB_GID /opt/TinyTeX && \
+    # `tlmgr path add` in install-bin-unix.sh to replace `ENV PATH=~/.TinyTeX/bin/x86_64-linux:$PATH`
+    wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh && \
+    # add package
+    tlmgr install $(wget -qO- "https://raw.githubusercontent.com/dennischancs/jupyter-docker-stacks-aio/main/TinyTeX/pkgs-custom.txt" | tr '\n' ' ') && \
     rm -rf /tmp/* && \
     rm -rf /home/jovyan/.wget-hsts
 
@@ -41,7 +42,7 @@ RUN cd /tmp &&\
 COPY latex $CONDA_DIR/lib/python*/site-packages/nbconvert/templates/latex
 RUN chown -R $NB_UID:$NB_GID $CONDA_DIR/lib/python*/site-packages/nbconvert/templates/latex
 
-USER ${NB_UID}
+
 #### ----- merge tensorflow-notebook ----- ####
 # Install Tensorflow
 RUN mamba install --quiet --yes \
